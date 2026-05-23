@@ -28,7 +28,8 @@ const Dashboard = () => {
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/notes", config);
+      // const res = await axios.get("http://localhost:5000/api/notes", config);
+      const res = await axios.get("https://noteapp-backend-wm75.onrender.com/api/notes", config);
       setNotes(res.data);
     } catch (err) {
       console.error(err);
@@ -42,7 +43,8 @@ const Dashboard = () => {
   const viewNoteDetails = async (id) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/notes/${id}`,
+        // `http://localhost:5000/api/notes/${id}`,
+        `https://noteapp-backend-wm75.onrender.com/api/notes/${id}`,
         config,
       );
       setSelectedNote(res.data);
@@ -57,14 +59,16 @@ const Dashboard = () => {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:5000/api/notes/${editingId}`,
+          // `http://localhost:5000/api/notes/${editingId}`,
+          `https://noteapp-backend-wm75.onrender.com/api/notes/${editingId}`,
           { title, content },
           config,
         );
         setEditingId(null);
       } else {
         await axios.post(
-          "http://localhost:5000/api/notes",
+          // "http://localhost:5000/api/notes",
+          "https://noteapp-backend-wm75.onrender.com/api/notes",
           { title, content },
           config,
         );
@@ -86,7 +90,8 @@ const Dashboard = () => {
   const deleteNote = async (id) => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/notes/${id}`, config);
+        // await axios.delete(`http://localhost:5000/api/notes/${id}`, config);
+        await axios.delete(`https://noteapp-backend-wm75.onrender.com/api/notes/${id}`, config);
         fetchNotes();
       } catch (err) {
         console.error(err);

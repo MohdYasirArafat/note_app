@@ -10,7 +10,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', formData);
+      // const res = await axios.post('http://localhost:5000/api/users/login', formData);
+      const res = await axios.post('https://noteapp-backend-wm75.onrender.com/api/users/login', formData);
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {

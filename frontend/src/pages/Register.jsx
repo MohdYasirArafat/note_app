@@ -1,41 +1,3 @@
-// import React, { useState } from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-// import axios from 'axios';
-
-// const Register = () => {
-//   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-//   const [error, setError] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post('http://localhost:5000/api/users/register', formData);
-//       localStorage.setItem('token', res.data.token);
-//       navigate('/dashboard');
-//     } catch (err) {
-//       setError(err.response?.data?.message || 'Registration failed');
-//     }
-//   };
-
-//   return (
-//     <div style={{ maxWidth: '400px', margin: '100px auto', padding: '20px', background: '#fff', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
-//       <h2>Register</h2>
-//       {error && <p style={{ color: 'red' }}>{error}</p>}
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" placeholder="Full Name" required style={{ width: '100%', padding: '10px', marginBottom: '10px' }} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-//         <input type="email" placeholder="Email Address" required style={{ width: '100%', padding: '10px', marginBottom: '10px' }} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-//         <input type="password" placeholder="Password" required style={{ width: '100%', padding: '10px', marginBottom: '15px' }} onChange={(e) => setFormData({...formData, password: e.target.value})} />
-//         <button type="submit" style={{ width: '100%', padding: '10px', background: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Sign Up</button>
-//       </form>
-//       <p style={{ marginTop: '15px' }}>Already have an account? <Link to="/login">Login here</Link></p>
-//     </div>
-//   );
-// };
-
-// export default Register;
-
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -48,7 +10,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', formData);
+      // const res = await axios.post('http://localhost:5000/api/users/register', formData);
+      const res = await axios.post('https://noteapp-backend-wm75.onrender.com/api/users/register', formData);
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');
     } catch (err) {
