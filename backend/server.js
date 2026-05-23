@@ -1,6 +1,6 @@
 require('dotenv').config(); 
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors'); 
 const connectDB = require('./config/db');
 
 const app = express();
@@ -9,15 +9,27 @@ const PORT = process.env.PORT || 5000;
 // Connect DB
 connectDB();
 
-// Middleware
-// 2. FIXED: Cross-Origin Requests allow karne ke liye cors settings open rakhein
+// Middleware - CORS Configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173', 
+  'http://localhost:3000'  
+];
+
 app.use(cors({
-    origin: '*', // Production me aap iski jagah apna Vercel Frontend URL bhi daal sakte hain
-    credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 app.use(express.json());
 
+// Root Route
 app.get('/', (req, res) => {
     res.send('Notes App Backend Server is Running Live! ');
 });
